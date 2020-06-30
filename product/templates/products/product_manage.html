@@ -1,0 +1,35 @@
+{% extends 'login/base.html' %}
+{% block title %}Product Manage{% endblock %}
+
+{% block content %}
+    <!-- 产品列表-->
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Product Description</th>
+                    <th>Product Manager</th>
+                    <th>Create Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.product_name}}</td>
+                        <td>{{ product.product_desc }}</td>
+                        <td>{{ product.product_admin }}</td>
+                        <td>{{ product.create_time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

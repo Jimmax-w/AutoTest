@@ -1,0 +1,42 @@
+{% extends 'login/base.html' %}
+{% block title %}Apis Manage{% endblock %}
+{% block content %}
+    <ul class="nav navbar-nav">
+        <li><a href="/apis_manage/">單一接口測試</a></li>
+    </ul>
+    <!—单一接口测试用例-->
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>產品</th>
+                    <th>單一接口測試用例名稱</th>
+                    <th>URL 地址</th>
+                    <th>參數=值</th>
+                    <th>方法</th>
+                    <th>預期結果</th>
+                    <th>測試結果</th>
+                    <th>時間</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for apis in apiss %}
+                    <tr>
+                        <td>{{ apis.id }}</td>
+                        <td>{{ apis.Product.product_name }}</td>
+                        <td>{{ apis.api_name }}</td>
+                        <td>{{ apis.api_url }}</td>
+                        <td>{{ apis.api_param_value }}</td>
+                        <td>{{ apis.api_method }}</td>
+                        <td>{{ apis.api_result }}</td>
+                        <td>{{ apis.api_status }}</td>
+                        <td>{{ apis.create_time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

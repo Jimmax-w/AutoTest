@@ -1,0 +1,48 @@
+{% extends 'login/base.html' %}
+{% block title %}Auto Testing: API Step Manage{% endblock %}
+{% block content %}
+    <ul class="nav navbar-nav">
+        <li><a href="/apitest_manage/">流程接口測試</a></li>
+        <li class="active"><a href="/apistep_manage/">流程個接口測試步驟</a></li>
+    </ul>
+    <!-- 流程接口测试步骤-->
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>所屬產品</th>
+                    <th>所屬用例</th>
+                    <th>步驟</th>
+                    <th>URL位址</th>
+                    <th>參數=值</th>
+                    <th>方法</th>
+                    <th>預期結果</th>
+                    <th>測試結果</th>
+                    <th>執行時間</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for apistep in apisteps %}
+                    <tr>
+                        <td>{{ apistep.ApiTest.Product.product_name}}</td>
+                        <td>case{{ apistep.ApiTest.id }}:{{ apistep.ApiTest.api_test_name }}</td>
+                        <td>{{ apistep.apistep }}:{{ apistep.api_name }}</td>
+                        <td>{{ apistep.api_url }}</td>
+                        <td>{{ apistep.apt_param_value }}</td>
+                        <td>{{ apistep.api_method }}</td>
+                        <td>{{ apistep.api_result }}</td>
+                        <td>{% if apistep.api_status == 1 %}
+                            <a style='color:green'>{{ apistep.api_status }}</a>
+                        {% else %}
+                            <a style='color:red'>{{ apistep.api_status }}</a>
+                        {% endif %}
+                        </td>
+                        <td>{{ apistep.create_time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

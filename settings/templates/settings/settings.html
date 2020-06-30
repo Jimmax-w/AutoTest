@@ -1,0 +1,27 @@
+{% extends 'login/base.html' %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+    <!—设置列表-->
+    <div class="row" style="padding-top: 70px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Host Settings</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for set in sets %}
+                    <tr>
+                        <td>{{ set.id }}</td>
+                        <td>{{ set.set_host }}</td>
+                        <td>{{ set.set_value }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'login/base.html' %}
+{% block title %}Bug Manage{% endblock %}
+{% block content %}
+    <!—bug 列表-->
+    <div class="row" style="padding-top: 70px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>產品</th>
+                    <th>Name</th>
+                    <th>Details</th>
+                    <th>Solution</th>
+                    <th>Level</th>
+                    <th>創建人</th>
+                    <th>Assign</th>
+                    <th>Create Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for bug in bugs %}
+                    <tr>
+                    <td>{{ bug.id }}</td>
+                    <td>{{ bug.product.product_name}}</td>
+                    <td>{{ bug.bug_name }}</td>
+                    <td title="{{ bug.bug_detail }}">{{ bug.bug_detail }}</td>
+                    <td>{{ bug.bug_status }}</td>
+                    <td>{{ bug.bug_level }}</td>
+                    <td>{{ bug.bug_creater }}</td>
+                    <td>{{ bug.bug_assign }}</td>
+                    <td>{{ bug.created_time }}</td>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

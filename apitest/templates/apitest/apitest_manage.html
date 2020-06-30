@@ -1,0 +1,39 @@
+{% extends 'login/base.html' %}
+{% block title %}Auto Testing: API Test Manage{% endblock %}
+{% block content %}
+    <ul class="nav navbar-nav">
+        <li><a href="/apitest_manage/">流程接口測試</a></li>
+        <li class="active"><a href="/apistep_manage/">流程接口測試步驟</a></li>
+    </ul>
+    <!-- 流程接口列表-->
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>產品</th>
+                    <th>流程接口測試用例名稱</th>
+                    <th>流程接口描述</th>
+                    <th>測試負責人</th>
+                    <th>Testing Result</th>
+                    <th>測試用例步驟</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for apitest in apitests %}
+                    <tr>
+                        <td>{{ apitest.id }}</td>
+                        <td>{{ apitest.Product.product_name }}</td>
+                        <td>{{ apitest.api_test_name }}</td>
+                        <td>{{ apitest.api_test_desc }}</td>
+                        <td>{{ apitest.api_tester }}</td>
+                        <td>{{ apitest.apt_test_result }}</td>
+                        <td>{{ apitest.ApiStep.api_step}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

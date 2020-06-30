@@ -1,0 +1,49 @@
+{% extends 'login/base.html' %}
+{% block title %}App Case Step{% endblock %}
+{% block content %}
+    <ul class="nav navbar-nav">
+        <li><a href="/apptest_step/">應用測試步驟</a></li>
+    </ul>
+    <!-- 流程测试步骤-->
+    <div class="row" style="padding-top: 70px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>所屬產品</th>
+                    <th>所屬用例</th>
+                    <th>步驟</th>
+                    <th>定位方式</th>
+                    <th>控件元素</th>
+                    <th>操作方法</th>
+                    <th>測試數據</th>
+                    <th>驗證數據</th>
+                    <th>測試結果</th>
+                    <th>時間</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for appcasestep in appcasesteps %}
+                    <tr>
+                        <td>{{ appcasestep.app_case.product.product_name }}</td>
+                        <td>case{{ appcasestep.app_case.id }}:{{ appcasestep.app_case.case_name }}</td>
+                        <td>{{ appcasestep.test_step }}:{{ appcasestep.test_object_name }}</td>
+                        <td>{{ appcasestep.find_method }}</td>
+                        <td>{{ appcasestep.ev_element }}</td>
+                        <td>{{ appcasestep.operate_method }}</td>
+                        <td>{{ appcasestep.test_data }}</td>
+                        <td>{{ appcasestep.assert_data }}</td>
+                        <td>{% if appcasestep.test_result == 1 %}
+                            <a style='color:green'>{{ appcasestep.test_result }}</a>
+                        {% else %}
+                            <a style='color:red'>{{ appcasestep.test_result }}</a>
+                        {% endif %}
+                        </td>
+                        <td>{{ appcasestep.create_time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

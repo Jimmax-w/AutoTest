@@ -1,0 +1,39 @@
+{% extends 'login/base.html' %}
+{% block title %}App Test{% endblock %}
+{% block content %}
+    <ul class="nav navbar-nav">
+        <li><a href="/apptest/">應用測試</a></li>
+    </ul>
+    <!-- app 测试用例列表-->
+    <div class="row" style="padding-top: 10px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>產品</th>
+                    <th>測試用例名稱</th>
+                    <th>測試結果</th>
+                    <th>測試負責人</th>
+                    <th>時間</th>
+                    <th>測試用例步驟</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for appcase in appcases %}
+                    <tr>
+                        <td>{{ appcase.id }}</td>
+                        <td>{{ appcase.product.product_name }}</td>
+                        <td>{{ appcase.case_name }}</td>
+                        <td>{{ appcase.test_result}}</td>
+                        <td>{{ appcase.tester }}</td>
+                        <td>{{ appcase.create_time }}</td>
+                        <td><a href="#">{{ appcase.app_case_step }}</a></td>
+                        <td>{{ appcase.app_case_step }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

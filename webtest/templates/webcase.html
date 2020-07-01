@@ -1,0 +1,36 @@
+{% extends 'login/base.html' %}
+{% block title %}Web Test{% endblock %}
+{% block content %}
+    <!-- web 测试用例列表-->
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>產品</th>
+                    <th>測試用例名稱</th>
+                    <th>測試結果</th>
+                    <th>測試負責人</th>
+                    <th>時間</th>
+                    <th>測試用例步驟</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for webcase in webcases %}
+                    <tr>
+                        <td>{{ webcase.id }}</td>
+                        <td>{{ webcase.products.product_name }}</td>
+                        <td>{{ webcase.webCaseName }}</td>
+                        <td>{{ webcase.webTestResult }}</td>
+                        <td>{{ webcase.tester }}</td>
+                        <td>{{ webcase.createTime }}</td>
+                        <td><a href="#">{{ webcase.webcasestep_set }}</a></td>
+                        <td>{{ webcase.webcasestep_set }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

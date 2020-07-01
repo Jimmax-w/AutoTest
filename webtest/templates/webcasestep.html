@@ -1,0 +1,42 @@
+{% extends 'login/base.html' %}
+{% block title %}Web Case Step{% endblock %}
+
+{% block content %}
+    <!-- 用例步骤列表-->
+    <div class="row" style="padding-top: 20px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>所屬產品</th>
+                    <th所屬用例</th>
+                    <th>步驟</th>
+                    <th>定位方式</th>
+                    <th>控件元素</th>
+                    <th>操作方法</th>
+                    <th>測試數據</th>
+                    <th>驗證數據</th>
+                    <th>測試結果</th>
+                    <th>時間</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for webcasestep in webcasesteps %}
+                    <tr>
+                        <td>{{ webcasestep.webcase.products.product_name }}</td>
+                        <td>case{{ webcasestep.webcase.id }}:{{ webcasestep.webcase.webCaseName }}</td>
+                        <td>{{ webcasestep.webStep }}:{{ webcasestep.webObjName }}</td>
+                        <td>{{ webcasestep.webFindMethod }}</td>
+                        <td>{{ webcasestep.webElement }}</td>
+                        <td>{{ webcasestep.webOptMethod }}</td>
+                        <td>{{ webcasestep.webTestData }}</td>
+                        <td>{{ webcasestep.webAssertData }}</td>
+                        <td>{{ webcasestep.webTestResult }}</td>
+                        <td>{{ webcasestep.createTime }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

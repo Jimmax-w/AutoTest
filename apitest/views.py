@@ -1,3 +1,5 @@
+import pymysql
+from pymysql.cursors import Cursor
 from django.shortcuts import render
 from apitest.models import ApiTest, ApiStep, Apis
 from django.http import HttpResponseRedirect
@@ -43,3 +45,23 @@ def apis_manage(request):
                       {
                           'apiss': apis_list
                       })
+
+
+def test_report(request):
+    api_list = Apis.objects.all()
+    api_count = Apis.objects.count()
+    db = pymysql.connect(user='root', db='autotest', passwd='gdc5sha1002,.', host='127.0.0.1')
+    cur = db.cursor()
+    sql1 = 'SELECT count(id) FROM apitest_apis WHERE apitest_apis.api_status=1'
+    apis_pass_count = [row[0] for row in cur.fetchmany(cur.execute(sql1))][0]
+    sql2 = 'SELECT count(id) FROM apitest_apis WHERE apitest_apis.api_status=0'
+    apis_failed_count = [row[0] for row in cur.fetchmany(cur.execute(sql2))][0]
+    cur.close()
+    db.close()
+    return render(request, 'apitest/report.html',
+                  {
+                      'apiss': api_list,
+                      'apiscounts': api_count,
+                      'apis_pass_counts': apis_pass_count,
+                      'apis_fail_counts': apis_failed_count,
+                  })

@@ -29,8 +29,14 @@
                         <td>{{ apitest.api_test_desc }}</td>
                         <td>{{ apitest.api_tester }}</td>
                         <td>{{ apitest.apt_test_result }}</td>
-                        <td>{{ apitest.ApiStep.api_step}}</td>
+                        <td>{{ apitest.ApiStep.api_step }}</td>
                     </tr>
+                    <td>{% if apitest.apt_test_result == 1 %}
+                        <a style='color:green'>{{ apitest.apt_test_result }}</a>
+                    {% else %}
+                        <a style='color:red'>{{ apitest.apt_test_result }}</a>
+                    {% endif %}
+                    </td>
                 {% endfor %}
                 </tbody>
             </table>

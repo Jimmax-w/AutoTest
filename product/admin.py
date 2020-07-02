@@ -1,6 +1,7 @@
 from django.contrib import admin
 from product.models import Product
 from apitest.models import Apis
+from webtest.models import WebCase
 
 
 # Register your models here.
@@ -11,9 +12,15 @@ class ApisAdmin(admin.TabularInline):
     extra = 1
 
 
+class WebTestAdmin(admin.TabularInline):
+    list_display = ['webCaseName', 'webTestResult', 'createTime', 'id', 'products']
+    model = WebCase
+    extra = 1
+
+
 class ProductAdmin(admin.ModelAdmin):
     list = ['id', 'product_name', 'product_desc', ' product_admin', 'create_time']
-    inlines = [ApisAdmin]
+    inlines = [WebTestAdmin]
 
 
 admin.site.register(Product)

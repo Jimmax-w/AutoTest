@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bug',
     'settings',
     'apptest',
+    'webtest',
 ]
 
 MIDDLEWARE = [

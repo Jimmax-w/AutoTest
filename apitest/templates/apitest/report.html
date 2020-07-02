@@ -1,0 +1,104 @@
+{% extends 'login/base.html' %}
+{% block title %}Report of Auto Test{% endblock %}
+{% block content %}
+    <div class="row" style="padding-top: 55px;">
+        <div class="col-md-11">
+            <table class="table table-striped">
+                <div style="position:absolute; right:10px; width:10px; ">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>單一接口掃描-自動化測試匯總報告</th>
+                    </tr>
+                    <tr>
+                        <th>用例總數</th>
+                        <td>{{ apiscounts }}</td>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    {# 前端读取定义的变量#}
+                    <tr>
+                        <th>Pass</th>
+                        <td>{{ apis_pass_counts }}</td>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th
+                        ></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Fail</th>
+                        <td><a style='color:red'>{{ apis_fail_counts }}</a>
+                        </td>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </div>
+            </table>
+            <!-- 单一接口测试用例-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>失敗接口列表</th>
+                    <td>
+                <tr>
+                    <th>ID</th>
+                    <th>產品</th>
+                    <th>測試用例名稱</th>
+                    <th>URL</th>
+                    <th>參數=值</th>
+                    <th>方法</th>
+                    <th>期望</th>
+                    <th>測試結果</th>
+                    <th>執行時間</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for apis in apiss %}
+                    <tr>
+                        {% if apis.api_status == 0 %}
+                            <td>{{ apis.id }}</td>
+                            <td>{{ apis.product.product_name }}</td>
+                            <td>{{ apis.api_name }}</td>
+                            <td>{{ apis.api_url }}</td>
+                            <td>{{ apis.apt_param_value }}</td>
+                            <td>{{ apis.api_method }}</td>
+                            <td>{{ apis.api_result }}</td>
+                            <td>{% if apis.api_status == 1 %}
+                                <a style='color:green'>{{ apis.api_status }}</a>
+                            {% else %}
+                                <a style='color:red'>{{ apis.api_status }}</a>
+                            {% endif %}
+                            </td>
+                            <td>{{ apis.create_time }}</td>
+                        {% else %}
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

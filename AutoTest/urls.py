@@ -21,6 +21,7 @@ from apitest import views as api_view
 from bug import views as bug_view
 from settings import views as settings_view
 from apptest import views as apptest_view
+from webtest import views as webtest_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,4 +38,7 @@ urlpatterns = [
     path('bug_manage/', bug_view.bug_manage),
     path('settings/', settings_view.settings_manage),
     path('user/', settings_view.set_user),
+    path('webcase/', webtest_view.webCase),
+    path('webcase_step/', webtest_view.webCaseStep),
+    path('report/', api_view.test_report),
 ]
